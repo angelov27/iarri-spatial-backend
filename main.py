@@ -5,6 +5,17 @@ from pydantic import BaseModel
 
 app = FastAPI(title="API Predictiva IARRI-MX Spatial ML (Ligera)")
 
+from fastapi.middleware.cors import CORSMiddleware
+
+# Permite que tu frontend de Vercel se conecte sin bloqueos de seguridad
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Cambia esto por tu URL de Vercel después si quieres más seguridad
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Habilitar CORS para conectar con tu Vercel Frontend sin bloqueos
 app.add_middleware(
     CORSMiddleware,
